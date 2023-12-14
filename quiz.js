@@ -104,16 +104,11 @@ function submitQuiz() {
                             // Correct answer and selected: highlight in green and add 10 points
                             optionLabel.style.color = "green";
                             totalScore += 10;
-                        } else {
-                            // Correct answer (not selected): highlight in green
-                            optionLabel.style.color = "green";
                         }
                     } else {
                         if (userAnswer.value.trim().toLowerCase() === optionValue) {
                             // Incorrect answer and selected: highlight in red
                             optionLabel.style.color = "red";
-                        } else {
-                            // Incorrect answer (not selected): do nothing
                         }
                     }
                 });
