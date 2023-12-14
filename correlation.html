@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Correlation Coefficient Calculator</title>
+    <link rel="stylesheet" href="correlation.css">
+</head>
+<body>
+
+    <div class="calculator">
+        <h1>Correlation Coefficient Calculator</h1>
+        <label for="xValues">Enter X values (comma-separated):</label>
+        <input type="text" id="xValues">
+
+        <label for="yValues">Enter Y values (comma-separated):</label>
+        <input type="text" id="yValues">
+
+        <button onclick="calculateCorrelation()">Calculate</button>
+
+        <p id="result">Correlation Coefficient: <span id="correlationResult">-</span></p>
+        <p id="category">Correlation Category: <span id="categoryResult">-</span></p>
+    </div>
+
+    <script src="correlation.js"></script>
+
+    <a href="home.html" class="home-button"><button>Home</button></a>
+</body>
+</html>

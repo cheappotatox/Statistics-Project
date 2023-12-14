@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Graph Maker</title>
+    <link rel="stylesheet" href="graph_maker.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<h1>Graph Maker</h1>
+
+<div>
+    <label for="graphType">Select Graph Type:</label>
+    <select id="graphType">
+        <option value="bar">Bar Graph</option>
+        <option value="line">Line Graph</option>
+        <option value="pie">Pie Chart</option>
+        <option value="scatter">Scatter Plot</option>
+        <option value="radar">Radar Chart</option>
+        <option value="polarArea">Polar Area Chart</option>
+        <!-- Add other graph types to the dropdown -->
+    </select>
+
+    <label for="graphTitle">Graph Title:</label>
+    <input type="text" id="graphTitle">
+
+    <label for="xAxisTitle">X-Axis Title:</label>
+    <input type="text" id="xAxisTitle">
+
+    <label for="yAxisTitle">Y-Axis Title:</label>
+    <input type="text" id="yAxisTitle">
+
+    <label for="Xvalues">X Values (comma-separated):</label>
+    <input type="text" id="Xvalues">
+
+    <label for="Yvalues">Y Values (comma-separated):</label>
+    <input type="text" id="Yvalues">
+
+    <button onclick="makeGraph()">Make Graph</button>
+    <button onclick="resetGraph()">Reset</button>
+</div>
+
+<canvas id="myChart" width="400" height="400"></canvas>
+
+<a href="home.html" class="home-button"><button>Home</button></a>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="graph_maker.js"></script>
+<script src="scatter_plot_function.js"></script> <!-- Add this line to include the scatter plot function -->
+</body>
+</html>
