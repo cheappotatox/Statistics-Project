@@ -67,7 +67,8 @@ function loadQuestions() {
 
         for (const [number, data] of Object.entries(quizData[category])) {
             const questionElement = document.createElement("li");
-            questionElement.classList.add("quiz-question"); // Add this line
+            questionElement.classList.add("quiz-question");
+            questionElement.setAttribute("data-question", data.question); // Add this line
             questionElement.innerHTML = `<strong>${data.question}</strong><br>`;
 
             for (const option of data.options) {
@@ -93,17 +94,35 @@ function submitQuiz() {
             const questionElement = document.querySelector(`li[data-question="${data.question}"]`);
 
             if (userAnswer) {
-                if (userAnswer.value.trim().toLowerCase() === correctAnswer) {
-                    totalScore += 10;
-                } else {
-                    // Highlight the correct answer
-                    const correctOptionIndex = data.options.findIndex(option => option.toLowerCase() === correctAnswer);
-                    const correctOptionInput = questionElement.querySelector(`input[value="${data.options[correctOptionIndex]}"]`);
-                    correctOptionInput.parentElement.style.color = "green";
-                }
+                const options = questionElement.querySelectorAll('input[type="radio"]');
+                options.forEach(option => {
+                    const optionLabel = option.parentElement;
+                    const optionValue = option.value.trim().toLowerCase();
+
+                    if (optionValue === correctAnswer) {
+                        if (userAnswer.value.trim().toLowerCase() === correctAnswer) {
+                            // Correct answer and selected: highlight in green and add 10 points
+                            optionLabel.style.color = "green";
+                            totalScore += 10;
+                        } else {
+                            // Correct answer (not selected): highlight in green
+                            optionLabel.style.color = "green";
+                        }
+                    } else {
+                        if (userAnswer.value.trim().toLowerCase() === optionValue) {
+                            // Incorrect answer and selected: highlight in red
+                            optionLabel.style.color = "red";
+                        } else {
+                            // Incorrect answer (not selected): do nothing
+                        }
+                    }
+                });
             }
         }
     }
+
+    // Ensure the total score doesn't exceed 90
+    totalScore = Math.min(totalScore, 90);
 
     const scoreElement = document.getElementById("score");
     if (!scoreElement) {
@@ -112,7 +131,7 @@ function submitQuiz() {
         document.body.appendChild(newScoreElement);
     }
 
-    scoreElement.textContent = `Your Score: ${totalScore}/100`;
+    scoreElement.textContent = `Your Score: ${totalScore}/90`;
 
     return false; // Prevents the default form submission behavior
 }
